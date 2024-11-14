@@ -1,20 +1,37 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
+  prefix: "",
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        purple: {
+          "100": "#F4F7FE",
+          "200": "#BCB6FF",
+          "400": "#868CFF",
+          "500": "#7857FF",
+          "600": "#4318FF",
+        },
+        dark: {
+          "400": "#7986AC",
+          "500": "#606C80",
+          "600": "#2B3674",
+          "700": "#384262",
+        },
+      },
+      fontFamily: {
+        IBMPlex: ["var(--font-ibm-plex)"],
       },
     },
   },
   plugins: [],
 };
+
 export default config;
