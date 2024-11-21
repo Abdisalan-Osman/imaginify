@@ -5,32 +5,32 @@ import { getAllImages } from "@/lib/actions/image.actions";
 import Image from "next/image";
 import Link from "next/link";
 
-declare type SearchParamProps = {
-  params: { id: string; type: TransformationTypeKey };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-const Home = async ({ searchParams }: SearchParamProps) => {
+export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
   const searchQuery = (searchParams?.query as string) || "";
 
   const images = await getAllImages({ page, searchQuery });
-
   return (
     <>
       <section className="home">
         <h1 className="home-heading">
-          Unleash Your Creative Vision with Imaginify
+          Unleash your created vision with imaginify
         </h1>
-        <ul className="flex-center w-full gap-20">
+
+        <ul className="flex-center w-full gap-2">
           {navLinks.slice(1, 5).map((link) => (
             <Link
               key={link.route}
               href={link.route}
               className="flex-center flex-col gap-2"
             >
-              <li className="flex-center w-fit rounded-full bg-white p-4">
-                <Image src={link.icon} alt="image" width={24} height={24} />
+              <li className="flex-center bg-white p-4 rounded-full w-fit">
+                <Image
+                  src={link.icon}
+                  alt={link.label}
+                  width={24}
+                  height={24}
+                />
               </li>
               <p className="p-14-medium text-center text-white">{link.label}</p>
             </Link>
@@ -48,6 +48,4 @@ const Home = async ({ searchParams }: SearchParamProps) => {
       </section>
     </>
   );
-};
-
-export default Home;
+}
